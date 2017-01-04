@@ -4,6 +4,6 @@ This project was a quick, live-coded session to build a Twitter bot using Node.j
 
 See it live: https://twitter.com/bestfoodeva4eva
 
-Watch the Code Through Video: TBD
+Watch the Code Through Video: https://www.youtube.com/watch?v=FQEjree-Hjg&index=1&list=PLgJ8UgkiorCnh8hGydI17pWyaE3l9c1TK
 
 ![BestFood4Eva.png.png](BestFood4Eva.png)
