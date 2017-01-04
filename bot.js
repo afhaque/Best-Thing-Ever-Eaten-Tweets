@@ -8,9 +8,11 @@ Gameplan
 
 3. Choose a random tweet from the search results (DONE)
 
-4. Confirm the tweet I select is actually a new one.
+4. Confirm the tweet I select is actually a new one. (DONE)
 
 5. Post that tweet on my twitter account. (DONE)
+
+- We need to grab more than 15 tweets
 
 6. Run the code such that it repeats every X number of minutes. 
 
@@ -40,13 +42,19 @@ var client = new Twitter({
   access_token_secret: 'TXGSCkBsILLi5H0Bp0xMEqxRWRHZgEW0w23CbR5jjrNwO'
 });
 
+  // Test case for tweeting out
+  // client.post('statuses/update', {status: "Mission Successful " + Math.random()}, function(error, tweet, response) {
+  //   if (!error) {
+  //     console.log(tweet);
+      
+  //   }})
 
 // Tweet Options
 var all_tweets = [];
 var historic_tweets = [];
 
 // Run a Search for "Best Thing I Ever Ate"
-client.get('search/tweets', {q: 'Best Thing I Ever Ate'}, function(error, tweets, response) {
+client.get('search/tweets', {q: 'Best Thing I Ever Ate', count: 100}, function(error, tweets, response) {
    // console.log(tweets);
 
    // Loop through all tweets possible
@@ -62,7 +70,7 @@ client.get('search/tweets', {q: 'Best Thing I Ever Ate'}, function(error, tweets
       "url": tweets.statuses[tweet].user.url});
 
     // Log to console
-    console.log(tweets.statuses[tweet].text);
+    // console.log(tweets.statuses[tweet].text);
 
   } 
 
@@ -73,52 +81,61 @@ client.get('search/tweets', {q: 'Best Thing I Ever Ate'}, function(error, tweets
       console.log("HIT THIS ONE")
 
       // Random selection of tweets
-      random_element = Math.floor(Math.random() * all_tweets.length) + 1;  
+      random_element = Math.floor(Math.random() * all_tweets.length-1) + 1;  
 
       // Choose a random tweet
       selected_tweet = all_tweets[random_element];
 
-      console.log(selected_tweet);
+      // console.log(all_tweets);
 
+      // console.log("random_element", random_element);
+      // console.log(all_tweets[random_element])
+      // console.log(selected_tweet);
+      // console.log(selected_tweet.screen_name);
       if (!(selected_tweet in historic_tweets) && (selected_tweet.screen_name != "bestfoodeva4eva")){
 
         console.log("HIT THIS SECOND ONE")
 
         // Push the selected_tweet to historic_tweets
         historic_tweets.push(selected_tweet);
+        found_one = true;
+
+          // Test case for tweeting out
+          client.post('statuses/update', {status: "Mission 2 Successful " + Math.random()}, function(error, tweet, response) {
+            if (!error) {
+              console.log(tweet);
+              
+            }})
 
         // Test case for tweeting out
-        client.post('statuses/update', {status: selected_tweet.text + "(Thx: @" + selected_tweet.screen_name + ")"}, function(error, tweet, response) {
+        client.post('statuses/update', {status: selected_tweet.text}, function(error, tweet, response) {
           if (!error) {
             console.log(tweet);
-            found_one = true;
-
+            
           }
       });
 
 
     }
 
-    
-
     }
 
     // Save Twitter Objects in JSON
     fs.writeFile('contents.json', JSON.stringify(all_tweets, null, '\t'), (err) => {
       if (err) throw err;
-      console.log('It\'s saved!');
+      // console.log('It\'s saved!');
     });
 
     // Save Twitter feed to a text file 
     fs.writeFile('tweets.json', JSON.stringify(tweets, null, '\t'), (err) => {
       if (err) throw err;
-      console.log('It\'s saved!');
+      // console.log('It\'s saved!');
     });
 
     // Save Historic Tweets in JSON
     fs.writeFile('historic_tweets.json', JSON.stringify(historic_tweets, null, '\t'), (err) => {
       if (err) throw err;
-      console.log('It\'s saved!');
+      // console.log('It\'s saved!');
     });
 
   });
