@@ -110,5 +110,5 @@ var TweetThatFood = function(){
 
 // Call the function
 TweetThatFood()
-setInterval(TweetThatFood, 60000);
+setInterval(TweetThatFood, 1200000);
 
