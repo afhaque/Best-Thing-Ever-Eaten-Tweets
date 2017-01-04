@@ -1,6 +1,6 @@
 /*
 
-Gameplan
+Game Plan
 
 1. Connect to a Twitter Account (DONE)
 
@@ -12,22 +12,15 @@ Gameplan
 
 5. Post that tweet on my twitter account. (DONE)
 
-- We need to grab more than 15 tweets
+- We need to grab more than 15 tweets (DONE)
 
-6. Run the code such that it repeats every X number of minutes. 
+6. Run the code such that it repeats every X number of minutes. (DONE)
 
 7. Figure out how to deploy a worker with node. 
 
 8. Stretch Target: Do a google image search of that phrase and then include a picture. 
 
 ---------------------------
-
-Twitter API Stuff:
-Consumer Key (API Key)  rpLZJxoLMFG4ursD9Oes4wUhW
-Consumer Secret (API Secret)  NmJyEvsBlOwENbdzE2hu5v6ZkeGb0L2xhS6bjpWYMQbYhgT4s9
-
-Access Token  590617948-G00CWZ7BEXf5mCQwaleMQcm5fuJ1TdD0WbVENIkQ
-Access Token Secret Ptkw1HydCNj62OewpJuV9FJOQY4rs3l56KuN9iuVZri2J
 
 */
 
@@ -42,100 +35,84 @@ var client = new Twitter({
   access_token_secret: 'TXGSCkBsILLi5H0Bp0xMEqxRWRHZgEW0w23CbR5jjrNwO'
 });
 
-  // Test case for tweeting out
-  // client.post('statuses/update', {status: "Mission Successful " + Math.random()}, function(error, tweet, response) {
-  //   if (!error) {
-  //     console.log(tweet);
-      
-  //   }})
-
 // Tweet Options
 var all_tweets = [];
 var historic_tweets = [];
 
-// Run a Search for "Best Thing I Ever Ate"
-client.get('search/tweets', {q: 'Best Thing I Ever Ate', count: 100}, function(error, tweets, response) {
-   // console.log(tweets);
+// Main Code
+var TweetThatFood = function(){
 
-   // Loop through all tweets possible
-   for (tweet in tweets.statuses){
+  // Run a Search for "Best Thing I Ever Ate"
+  client.get('search/tweets', {q: 'Best Thing I Ever Ate', count: 100}, function(error, tweets, response) {
+     // console.log(tweets);
 
-    // Add the tweet to our all_tweets list
-    all_tweets.push({
-      "text": tweets.statuses[tweet].text,
-      "id": tweets.statuses[tweet].id,
-      "name": tweets.statuses[tweet].user.name,
-      "screen_name": tweets.statuses[tweet].user.screen_name,
-      "location": tweets.statuses[tweet].user.location,
-      "url": tweets.statuses[tweet].user.url});
+     // Loop through all tweets possible
+     for (tweet in tweets.statuses){
 
-    // Log to console
-    // console.log(tweets.statuses[tweet].text);
+      // Add the tweet to our all_tweets list
+      all_tweets.push({
+        "text": tweets.statuses[tweet].text,
+        "id": tweets.statuses[tweet].id,
+        "name": tweets.statuses[tweet].user.name,
+        "screen_name": tweets.statuses[tweet].user.screen_name,
+        "location": tweets.statuses[tweet].user.location,
+        "url": tweets.statuses[tweet].user.url});
 
-  } 
+    } 
 
-    var found_one = false;
+      var found_one = false;
 
-    while(!found_one){
+      while(!found_one){
 
-      console.log("HIT THIS ONE")
+        console.log("HIT THIS ONE")
 
-      // Random selection of tweets
-      random_element = Math.floor(Math.random() * all_tweets.length-1) + 1;  
+        // Random selection of tweets
+        random_element = Math.floor(Math.random() * all_tweets.length-1) + 1;  
 
-      // Choose a random tweet
-      selected_tweet = all_tweets[random_element];
+        // Choose a random tweet
+        selected_tweet = all_tweets[random_element];
 
-      // console.log(all_tweets);
+        if (!(selected_tweet in historic_tweets) && (selected_tweet.screen_name != "bestfoodeva4eva")){
 
-      // console.log("random_element", random_element);
-      // console.log(all_tweets[random_element])
-      // console.log(selected_tweet);
-      // console.log(selected_tweet.screen_name);
-      if (!(selected_tweet in historic_tweets) && (selected_tweet.screen_name != "bestfoodeva4eva")){
+          console.log("HIT THIS SECOND ONE")
 
-        console.log("HIT THIS SECOND ONE")
+          // Push the selected_tweet to historic_tweets
+          historic_tweets.push(selected_tweet);
+          found_one = true;
 
-        // Push the selected_tweet to historic_tweets
-        historic_tweets.push(selected_tweet);
-        found_one = true;
-
-          // // Test case for tweeting out
-          // client.post('statuses/update', {status: "Mission 2 Successful " + Math.random()}, function(error, tweet, response) {
-          //   if (!error) {
-          //     console.log(tweet);
+          // Test case for tweeting out
+          client.post('statuses/update', {status: selected_tweet.text}, function(error, tweet, response) {
+            if (!error) {
+              console.log(tweet);
               
-          //   }})
-
-        // Test case for tweeting out
-        client.post('statuses/update', {status: selected_tweet.text}, function(error, tweet, response) {
-          if (!error) {
-            console.log(tweet);
-            
-          }
-        });
+            }
+          });
 
 
-    }
+      }
 
-    }
+      }
 
-    // Save Twitter Objects in JSON
-    fs.writeFile('contents.json', JSON.stringify(all_tweets, null, '\t'), (err) => {
-      if (err) throw err;
-      // console.log('It\'s saved!');
+      // Save Twitter Objects in JSON
+      fs.writeFile('contents.json', JSON.stringify(all_tweets, null, '\t'), (err) => {
+        if (err) throw err;
+      });
+
+      // Save Twitter feed to a text file 
+      fs.writeFile('tweets.json', JSON.stringify(tweets, null, '\t'), (err) => {
+        if (err) throw err;
+      });
+
+      // Save Historic Tweets in JSON
+      fs.writeFile('historic_tweets.json', JSON.stringify(historic_tweets, null, '\t'), (err) => {
+        if (err) throw err;
+      });
+
     });
 
-    // Save Twitter feed to a text file 
-    fs.writeFile('tweets.json', JSON.stringify(tweets, null, '\t'), (err) => {
-      if (err) throw err;
-      // console.log('It\'s saved!');
-    });
+}
 
-    // Save Historic Tweets in JSON
-    fs.writeFile('historic_tweets.json', JSON.stringify(historic_tweets, null, '\t'), (err) => {
-      if (err) throw err;
-      // console.log('It\'s saved!');
-    });
+// Call the function
+TweetThatFood()
+setInterval(TweetThatFood, 20000);
 
-  });
