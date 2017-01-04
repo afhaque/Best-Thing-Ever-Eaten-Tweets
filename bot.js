@@ -100,12 +100,12 @@ client.get('search/tweets', {q: 'Best Thing I Ever Ate', count: 100}, function(e
         historic_tweets.push(selected_tweet);
         found_one = true;
 
-          // Test case for tweeting out
-          client.post('statuses/update', {status: "Mission 2 Successful " + Math.random()}, function(error, tweet, response) {
-            if (!error) {
-              console.log(tweet);
+          // // Test case for tweeting out
+          // client.post('statuses/update', {status: "Mission 2 Successful " + Math.random()}, function(error, tweet, response) {
+          //   if (!error) {
+          //     console.log(tweet);
               
-            }})
+          //   }})
 
         // Test case for tweeting out
         client.post('statuses/update', {status: selected_tweet.text}, function(error, tweet, response) {
@@ -113,7 +113,7 @@ client.get('search/tweets', {q: 'Best Thing I Ever Ate', count: 100}, function(e
             console.log(tweet);
             
           }
-      });
+        });
 
 
     }
