@@ -16,9 +16,9 @@ Game Plan
 
 6. Run the code such that it repeats every X number of minutes. (DONE)
 
-7. Figure out how to deploy a worker with node. 
+7. Figure out how to deploy a worker with node. (DONE)
 
-8. Stretch Target: Do a google image search of that phrase and then include a picture. 
+8. Stretch Target: Do a google image search of that phrase and then include a picture. (ONE OF THESE DAYS!)
 
 ---------------------------
 
