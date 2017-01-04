@@ -60,6 +60,7 @@ var TweetThatFood = function(){
 
     } 
 
+      // Use boolean flag to ensure only "unique" tweets are used.
       var found_one = false;
 
       while(!found_one){
@@ -84,9 +85,7 @@ var TweetThatFood = function(){
             }
           });
 
-
-      }
-
+        }
       }
 
       // Save Twitter Objects in JSON
