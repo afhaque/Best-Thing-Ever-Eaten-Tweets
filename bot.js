@@ -81,27 +81,26 @@ var TweetThatFood = function(){
           client.post('statuses/update', {status: selected_tweet.text}, function(error, tweet, response) {
             if (!error) {
               console.log(tweet);
-              
             }
           });
 
         }
       }
 
-      // Save Twitter Objects in JSON
-      fs.writeFile('contents.json', JSON.stringify(all_tweets, null, '\t'), (err) => {
-        if (err) throw err;
-      });
+      // // Save Twitter Objects in JSON
+      // fs.writeFile('contents.json', JSON.stringify(all_tweets, null, '\t'), (err) => {
+      //   if (err) throw err;
+      // });
 
-      // Save Twitter feed to a text file 
-      fs.writeFile('tweets.json', JSON.stringify(tweets, null, '\t'), (err) => {
-        if (err) throw err;
-      });
+      // // Save Twitter feed to a text file 
+      // fs.writeFile('tweets.json', JSON.stringify(tweets, null, '\t'), (err) => {
+      //   if (err) throw err;
+      // });
 
-      // Save Historic Tweets in JSON
-      fs.writeFile('historic_tweets.json', JSON.stringify(historic_tweets, null, '\t'), (err) => {
-        if (err) throw err;
-      });
+      // // Save Historic Tweets in JSON
+      // fs.writeFile('historic_tweets.json', JSON.stringify(historic_tweets, null, '\t'), (err) => {
+      //   if (err) throw err;
+      // });
 
     });
 
