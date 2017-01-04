@@ -64,8 +64,6 @@ var TweetThatFood = function(){
 
       while(!found_one){
 
-        console.log("HIT THIS ONE")
-
         // Random selection of tweets
         random_element = Math.floor(Math.random() * all_tweets.length-1) + 1;  
 
@@ -73,8 +71,6 @@ var TweetThatFood = function(){
         selected_tweet = all_tweets[random_element];
 
         if (!(selected_tweet in historic_tweets) && (selected_tweet.screen_name != "bestfoodeva4eva")){
-
-          console.log("HIT THIS SECOND ONE")
 
           // Push the selected_tweet to historic_tweets
           historic_tweets.push(selected_tweet);
