@@ -10,7 +10,7 @@ Gameplan
 
 4. Confirm the tweet I select is actually a new one.
 
-5. Post that tweet on my twitter account.
+5. Post that tweet on my twitter account. (DONE)
 
 6. Run the code such that it repeats every X number of minutes. 
 
@@ -43,6 +43,7 @@ var client = new Twitter({
 
 // Tweet Options
 var all_tweets = [];
+var historic_tweets = [];
 
 // Run a Search for "Best Thing I Ever Ate"
 client.get('search/tweets', {q: 'Best Thing I Ever Ate'}, function(error, tweets, response) {
@@ -63,28 +64,44 @@ client.get('search/tweets', {q: 'Best Thing I Ever Ate'}, function(error, tweets
     // Log to console
     console.log(tweets.statuses[tweet].text);
 
-  }
+  } 
 
-    console.log(all_tweets)
+    var found_one = false;
+
+    while(!found_one){
+
+      console.log("HIT THIS ONE")
+
+      // Random selection of tweets
+      random_element = Math.floor(Math.random() * all_tweets.length) + 1;  
+
+      // Choose a random tweet
+      selected_tweet = all_tweets[random_element];
+
+      console.log(selected_tweet);
+
+      if (!(selected_tweet in historic_tweets) && (selected_tweet.screen_name != "bestfoodeva4eva")){
+
+        console.log("HIT THIS SECOND ONE")
+
+        // Push the selected_tweet to historic_tweets
+        historic_tweets.push(selected_tweet);
+
+        // Test case for tweeting out
+        client.post('statuses/update', {status: selected_tweet.text + "(Thx: @" + selected_tweet.screen_name + ")"}, function(error, tweet, response) {
+          if (!error) {
+            console.log(tweet);
+            found_one = true;
+
+          }
+      });
 
 
-    // Random selection of tweets
-    random_element = Math.floor(Math.random() * all_tweets.length) + 1;  
+    }
 
-    console.log("random_element", random_element);
+    
 
-    // Choose a random tweet
-    selected_tweet = all_tweets[random_element];
-    console.log("selected_tweet", selected_tweet);
-
-    console.log("THIS IS THE RANDOM TWEET: " + selected_tweet.text);
-
-    // Test case for tweeting out
-    client.post('statuses/update', {status: selected_tweet.text}, function(error, tweet, response) {
-      if (!error) {
-        console.log(tweet);
-      }
-    });
+    }
 
     // Save Twitter Objects in JSON
     fs.writeFile('contents.json', JSON.stringify(all_tweets, null, '\t'), (err) => {
@@ -94,6 +111,12 @@ client.get('search/tweets', {q: 'Best Thing I Ever Ate'}, function(error, tweets
 
     // Save Twitter feed to a text file 
     fs.writeFile('tweets.json', JSON.stringify(tweets, null, '\t'), (err) => {
+      if (err) throw err;
+      console.log('It\'s saved!');
+    });
+
+    // Save Historic Tweets in JSON
+    fs.writeFile('historic_tweets.json', JSON.stringify(historic_tweets, null, '\t'), (err) => {
       if (err) throw err;
       console.log('It\'s saved!');
     });

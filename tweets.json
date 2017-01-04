@@ -1,15 +1,46 @@
 {
 	"statuses": [
 		{
-			"created_at": "Wed Jan 04 01:11:48 +0000 2017",
-			"id": 816452035746873300,
-			"id_str": "816452035746873344",
-			"text": "I just had a chocolate snowman and omg that was the best thing I ever ate !!!!!!!!!!",
+			"created_at": "Wed Jan 04 01:18:53 +0000 2017",
+			"id": 816453817843781600,
+			"id_str": "816453817843781632",
+			"text": "@jcellurale10 @AndrewDav_  in &amp;amp; out was probably the best thing I've ever ate(Thx: @calliecunningh3",
 			"truncated": false,
 			"entities": {
 				"hashtags": [],
 				"symbols": [],
-				"user_mentions": [],
+				"user_mentions": [
+					{
+						"screen_name": "jcellurale10",
+						"name": "John Cellurale",
+						"id": 2933737930,
+						"id_str": "2933737930",
+						"indices": [
+							0,
+							13
+						]
+					},
+					{
+						"screen_name": "AndrewDav_",
+						"name": "Andy",
+						"id": 2164025716,
+						"id_str": "2164025716",
+						"indices": [
+							14,
+							25
+						]
+					},
+					{
+						"screen_name": "calliecunningh3",
+						"name": "callie",
+						"id": 627013938,
+						"id_str": "627013938",
+						"indices": [
+							91,
+							107
+						]
+					}
+				],
 				"urls": []
 			},
 			"metadata": {
@@ -19,9 +50,9 @@
 			"source": "<a href=\"http://www.google.com\" rel=\"nofollow\">Best Food Eva4Eva</a>",
 			"in_reply_to_status_id": null,
 			"in_reply_to_status_id_str": null,
-			"in_reply_to_user_id": null,
-			"in_reply_to_user_id_str": null,
-			"in_reply_to_screen_name": null,
+			"in_reply_to_user_id": 2933737930,
+			"in_reply_to_user_id_str": "2933737930",
+			"in_reply_to_screen_name": "jcellurale10",
 			"user": {
 				"id": 816450584534519800,
 				"id_str": "816450584534519808",
@@ -45,7 +76,7 @@
 				"time_zone": null,
 				"geo_enabled": false,
 				"verified": false,
-				"statuses_count": 4,
+				"statuses_count": 6,
 				"lang": "en",
 				"contributors_enabled": false,
 				"is_translator": false,
@@ -136,7 +167,7 @@
 				"time_zone": null,
 				"geo_enabled": false,
 				"verified": false,
-				"statuses_count": 4,
+				"statuses_count": 6,
 				"lang": "en",
 				"contributors_enabled": false,
 				"is_translator": false,
@@ -237,7 +268,7 @@
 				"time_zone": null,
 				"geo_enabled": false,
 				"verified": false,
-				"statuses_count": 4,
+				"statuses_count": 6,
 				"lang": "en",
 				"contributors_enabled": false,
 				"is_translator": false,
@@ -321,9 +352,9 @@
 					}
 				},
 				"protected": false,
-				"followers_count": 6157,
+				"followers_count": 6158,
 				"friends_count": 713,
-				"listed_count": 221,
+				"listed_count": 219,
 				"created_at": "Wed Jan 10 17:20:46 +0000 2007",
 				"favourites_count": 2710,
 				"utc_offset": -18000,
@@ -1431,12 +1462,12 @@
 				"friends_count": 452,
 				"listed_count": 4,
 				"created_at": "Fri Aug 08 20:20:12 +0000 2014",
-				"favourites_count": 8312,
+				"favourites_count": 8314,
 				"utc_offset": null,
 				"time_zone": null,
 				"geo_enabled": true,
 				"verified": false,
-				"statuses_count": 18185,
+				"statuses_count": 18188,
 				"lang": "en",
 				"contributors_enabled": false,
 				"is_translator": false,
@@ -1474,12 +1505,12 @@
 		}
 	],
 	"search_metadata": {
-		"completed_in": 0.026,
-		"max_id": 816452035746873300,
-		"max_id_str": "816452035746873344",
+		"completed_in": 0.028,
+		"max_id": 816453817843781600,
+		"max_id_str": "816453817843781632",
 		"next_results": "?max_id=816142825318326271&q=Best%20Thing%20I%20Ever%20Ate&include_entities=1",
 		"query": "Best+Thing+I+Ever+Ate",
-		"refresh_url": "?since_id=816452035746873344&q=Best%20Thing%20I%20Ever%20Ate&include_entities=1",
+		"refresh_url": "?since_id=816453817843781632&q=Best%20Thing%20I%20Ever%20Ate&include_entities=1",
 		"count": 15,
 		"since_id": 0,
 		"since_id_str": "0"
